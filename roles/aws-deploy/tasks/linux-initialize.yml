@@ -36,11 +36,11 @@
     become: yes
     when: tags.cloud_provider == "aws"
 
-  - name: Enable the RHSM repository
-    community.general.rhsm_repository:
-      name: ansible-automation-platform-2.1-for-rhel-8-x86_64-rpms
-    become: yes
-    when: tags.cloud_provider == "aws"
+#  - name: Enable the AAP repository
+#    community.general.rhsm_repository:
+#      name: ansible-automation-platform-2.1-for-rhel-8-x86_64-rpms
+#    become: yes
+#    when: tags.cloud_provider == "aws"
 
   - name: Install package ansible
     ansible.builtin.dnf:
