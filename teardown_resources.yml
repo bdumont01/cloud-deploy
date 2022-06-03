@@ -22,9 +22,9 @@
           region: "{{ ec2_region }}"
         register: vpc_net_facts
 
-      # - name: debug vpc_net_facts
-      #   debug:
-      #     var: vpc_net_facts
+       - name: debug vpc_net_facts
+         debug:
+           var: vpc_net_facts
 
       - name: "Gather {{ application }} Instance Info"
         community.aws.ec2_instance_info:
@@ -35,14 +35,14 @@
             "instance-state-name": "running"
         register: instance_info
 
-      # - debug:
-      #     var: instance_info
+       - debug:
+           var: instance_info
 
-      # - debug:
-      #     var: instance_info.instances | length
-      #
-      # - debug:
-      #     var: instance_info | json_query('instances[*].instance_id')
+       - debug:
+           var: instance_info.instances | length
+      
+       - debug:
+           var: instance_info | json_query('instances[*].instance_id')
 
       - name: "Gather {{ application }} Route Table Information"
         community.aws.ec2_vpc_route_table_info:
@@ -52,8 +52,8 @@
             "tag:provisioner": "mford"
         register: route_table_info
 
-      # - debug:
-      #     var: route_table_info.route_tables[0].id
+       - debug:
+           var: route_table_info.route_tables[0].id
 
       - name: Delete Route Table
         community.aws.ec2_vpc_route_table:
