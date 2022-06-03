@@ -42,12 +42,12 @@
 #    become: yes
 #    when: tags.cloud_provider == "aws"
 
-  - name: Install package ansible
-    ansible.builtin.dnf:
-      state: present
-      name: ansible
-    become: yes
-    when: tags.cloud_provider == "aws"
+#  - name: Install package ansible
+#    ansible.builtin.dnf:
+#      state: present
+#      name: ansible
+#    become: yes
+#    when: tags.cloud_provider == "aws"
 
   - name: Disable the Subscription-Manager repository
     ansible.builtin.command: subscription-manager config --rhsm.manage_repos=0
