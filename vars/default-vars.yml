@@ -3,7 +3,7 @@ working_dir: /tmp
 
 #specifies which cloud to deploy resources to
 #acceptable options: aws, gcp
-cloud_provider: gcp
+cloud_provider: aws
 num_instances: 3
 approver_email: mfordansible@gmail.com
 
@@ -17,10 +17,8 @@ application: apache
 # ec2_image_id: ami-098f16afa9edf40be #RHEL-8.2.0_HVM-20200423-x86_64
 ec2_image_id: ami-0251f146af87abba4 #RHEL-8.6.0_HVM-20220503-x86_64-2-Access2-GP2
 ec2_wait: yes #wait for newly created instances to reach desired state before returning
-#ec2_vpc_subnet: "192.168.0.0/28"
-#ec2_vpc_cidr: "192.168.0.0/24"
-ec2_vpc_subnet: "10.10.0.0/28"
-ec2_vpc_cidr: "10.10.0.0/24"
+ec2_vpc_subnet: "192.168.0.0/28"
+ec2_vpc_cidr: "192.168.0.0/24"
 ec2_root_volume_size: 10
 from_snow: false
 aws_instance_username: ec2-user
