@@ -1,0 +1,71 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - credentials/tower_creds.yml
+
+
+  tasks:
+    - name: "Get Workflow template information"
+      uri:
+        url: "{{ tower_url }}/api/v2/workflow_job_templates/36/launch/"
+        validate_certs: false
+        force_basic_auth: true
+        url_username: "{{ tower_user }}"
+        url_password: "{{ tower_pass }}"
+        method: GET
+        return_content: yes
+        body_format: json
+      register: workflow_template
+      delegate_to: localhost
+    - name: set facts
+      set_fact:
+        limits_on_launch: "{{ workflow_template.json.ask_limit_on_launch }}" 
+        scm_on_launch: "{{ workflow_template.json.ask_scm_branch_on_launch }}"
+        extras: "{{ workflow_template.json.defaults.extra_vars }}"
+        inventory: "{{ workflow_template.json.defaults.inventory.id }}"
+        limits: "{{ workflow_template.json.defaults.limit }}"
+        scm:  "{{ workflow_template.json.defaults.scm_branch }}"
+
+    - name: print workflow job id
+      debug:
+        msg: 
+          - "this is limits on launch value {{ limits_on_launch }}"
+          - "this is scm on launch value {{ scm_on_launch }}"
+          - "this is extras {{ extras }}"
+          - "this is inventory {{ inventory }}"
+          - "this is limits {{ limits }}"
+          - "this is scm {{ scm }}"
+        verbosity: 2
+
+
+
+    - name: "Launch the template"
+      uri:
+        url: "{{ tower_url }}/api/v2/workflow_job_templates/34/launch/"
+        validate_certs: false
+        force_basic_auth: true
+        url_username: "{{ tower_user }}" 
+        url_password: "{{ tower_pass }}"
+        method: POST
+        return_content: yes
+        status_code: 201
+        body_format: json
+        body:
+         {
+           "ask_limit_on_launch": "{{ limits_on_launch }}",
+           "ask_scm_branch_on_launch": "{{ scm_on_launch }}",
+           "extra_vars": "{{ extras }}",
+           "inventory": "{{ inventory }}",
+           "limit": "{{ limits }} ",
+           "scm_branch": "{{ scm }}"
+         }
+      register: workflow_job_id
+      delegate_to: localhost
+
+    - name: print workflow job id
+      debug:
+        var=worklow_job_id
+
+
+
