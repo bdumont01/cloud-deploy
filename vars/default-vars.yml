@@ -22,6 +22,8 @@ ec2_vpc_cidr: "172.16.0.0/24"
 ec2_root_volume_size: 10
 from_snow: false
 aws_instance_username: ec2-user
+provisioner_name: dumont
+demo_name: appdeployment
 
 #GCP parameters
 gcp_prefix: mford-linux
