@@ -76,7 +76,7 @@
     region: "{{ ec2_region }}"
     filters:
       "tag:application": "{{ application }}"
-      "tag:provisioner": "mford"
+      "tag:provisioner": "{{ provisioner_name }}"
   register: subnet_info
 
 
@@ -93,10 +93,10 @@
     wait: "{{ ec2_wait }}"
     vpc_subnet_id: "{{ subnet_info.subnets[0].id }}"
     instance_tags:
-      provisioner: mford
+      provisioner: "{{ provisioner_name }}"
       application: "{{ application }}"
       Name: "{{ application }}-webserver"
-      demo: appdeployment
+      demo: "{{ demo_name }}"
       group: webserver
       ec2_prefix: "{{ ec2_prefix }}"
       cloud_provider: aws
@@ -120,10 +120,10 @@
     wait: "{{ ec2_wait }}"
     vpc_subnet_id: "{{ subnet_info.subnets[0].id }}"
     instance_tags:
-      provisioner: mford
+      provisioner: "{{ provisioner_name }}"
       application: "{{ application }}"
       Name: "{{ application }}-server"
-      demo: appdeployment
+      demo: "{{ demo_name }}"
       group: rhel
       ec2_prefix: "{{ ec2_prefix }}"
       cloud_provider: aws
