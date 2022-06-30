@@ -50,7 +50,7 @@
     region: "{{ ec2_region }}"
     vpc_id: "{{ create_vpc.vpc.id }}"
     map_public: yes
-    cidr: "{{ ec2_vpc_subnet }}"
+    cidr: "{{ ec2_vpc_cidr}}/{{ ec2_vpc_subnet }}"
     tags:
       provisioner: "{{ provisioner_name }}"
       application: "{{ application }}"
