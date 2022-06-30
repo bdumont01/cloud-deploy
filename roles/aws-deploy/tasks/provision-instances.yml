@@ -80,31 +80,31 @@
   register: subnet_info
 
 
-- name: "Create ec2 secrets engine instance"
-  amazon.aws.ec2:
-    assign_public_ip: true
+#- name: "Create ec2 secrets engine instance"
+#  amazon.aws.ec2:
+#    assign_public_ip: true
 #    key_name: "{{ ec2_prefix }}-key"
-    key_name: "Cloud Demo Instances Key"
-    group: "{{ ec2_prefix }}-sg"
-    instance_type: t2.medium
-    image: "{{ ec2_image_id }}"
-    region: "{{ ec2_region }}"
-    count: 1
-    wait: "{{ ec2_wait }}"
-    vpc_subnet_id: "{{ subnet_info.subnets[0].id }}"
-    instance_tags:
-      provisioner: "{{ provisioner_name }}"
-      application: "{{ application }}"
-      Name: "{{ application }}-webserver"
-      demo: "{{ demo_name }}"
-      group: webserver
-      ec2_prefix: "{{ ec2_prefix }}"
-      cloud_provider: aws
-    volumes:
-      - device_name: /dev/sda1
-        volume_type: gp2
-        volume_size: 10
-        delete_on_termination: true
+#    key_name: "Cloud Demo Instances Key"
+#    group: "{{ ec2_prefix }}-sg"
+#    instance_type: t2.medium
+#    image: "{{ ec2_image_id }}"
+#    region: "{{ ec2_region }}"
+#    count: 1
+#    wait: "{{ ec2_wait }}"
+#    vpc_subnet_id: "{{ subnet_info.subnets[0].id }}"
+#    instance_tags:
+#      provisioner: "{{ provisioner_name }}"
+#      application: "{{ application }}"
+#      Name: "{{ application }}-webserver"
+#      demo: "{{ demo_name }}"
+#      group: webserver
+#      ec2_prefix: "{{ ec2_prefix }}"
+#      cloud_provider: aws
+#    volumes:
+#      - device_name: /dev/sda1
+#        volume_type: gp2
+#        volume_size: 10
+#        delete_on_termination: true
 
 
 - name: "Create EC2 instances for {{ application }}"
