@@ -18,7 +18,8 @@ application: apache
 ec2_image_id: ami-0251f146af87abba4 #RHEL-8.6.0_HVM-20220503-x86_64-2-Access2-GP2
 ec2_wait: yes #wait for newly created instances to reach desired state before returning
 ec2_vpc_subnet: "28"
-ec2_vpc_cidr: "172.16.0.0/24"
+ec2_vpc_net: "172.16.0.0"
+ec2_vpc_cidr: "24"
 ec2_root_volume_size: 10
 from_snow: false
 aws_instance_username: ec2-user

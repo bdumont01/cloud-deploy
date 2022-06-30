@@ -3,7 +3,7 @@
   amazon.aws.ec2_vpc_net:
     region: "{{ ec2_region }}"
     name: "{{ ec2_prefix }}-vpc"
-    cidr_block: "{{ ec2_vpc_cidr }}"
+    cidr_block: "{{ ec2_vpc_net}}/{{ ec2_vpc_cidr }}"
     tags:
       provisioner: "{{ provisioner_name }}"
       application: "{{ application }}"
@@ -50,7 +50,7 @@
     region: "{{ ec2_region }}"
     vpc_id: "{{ create_vpc.vpc.id }}"
     map_public: yes
-    cidr: "{{ ec2_vpc_cidr}}/{{ ec2_vpc_subnet }}"
+    cidr: "{{ ec2_vpc_net}}/{{ ec2_vpc_subnet }}"
     tags:
       provisioner: "{{ provisioner_name }}"
       application: "{{ application }}"
