@@ -75,7 +75,7 @@
   amazon.aws.ec2_vpc_subnet_info:
     region: "{{ ec2_region }}"
     filters:
-      "tag:application": "{{ application }}"
+      "tag:application": "{{ ec2_prefix }}"
       "tag:provisioner": "{{ provisioner_name }}"
   register: subnet_info
 
@@ -121,8 +121,8 @@
     vpc_subnet_id: "{{ subnet_info.subnets[0].id }}"
     instance_tags:
       provisioner: "{{ provisioner_name }}"
-      application: "{{ application }}"
-      Name: "{{ application }}-server"
+      application: "{{ ec2_prefix }}"
+      Name: "{{ ec2_prefix }}-server"
       demo: "{{ demo_name }}"
       group: rhel
       ec2_prefix: "{{ ec2_prefix }}"
