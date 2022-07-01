@@ -107,7 +107,7 @@
 #        delete_on_termination: true
 
 
-- name: "Create EC2 instances for {{ application }}"
+- name: "Create EC2 instances for {{ ec2_prefix }}"
   amazon.aws.ec2:
     assign_public_ip: true
 #    key_name: "{{ ec2_prefix }}-key"
