@@ -79,6 +79,9 @@
       "tag:provisioner": "{{ provisioner_name }}"
   register: subnet_info
 
+- name: print subnet_info
+  ansible.builtin.debug:
+    var: subnet_info
 
 #- name: "Create ec2 secrets engine instance"
 #  amazon.aws.ec2:
@@ -125,7 +128,7 @@
       Name: "{{ ec2_prefix }}-server"
       demo: "{{ demo_name }}"
       group: rhel
-      ec2_prefix: "{{ ec2_prefix }}"
+#      ec2_prefix: "{{ ec2_prefix }}"
       cloud_provider: aws
     volumes:
       - device_name: "{{ ec2_root_volume_name }}"
