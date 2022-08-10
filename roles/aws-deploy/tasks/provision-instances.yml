@@ -75,7 +75,7 @@
   amazon.aws.ec2_vpc_subnet_info:
     region: "{{ ec2_region }}"
     filters:
-      "tag:application": "{{ ec2_prefix }}"
+      "tag:Name": "{{ vpc_name }}"
       "tag:provisioner": "{{ provisioner_name }}"
   register: subnet_info
 
