@@ -35,13 +35,15 @@
         ports:
         - 443
         cidr_ip: 0.0.0.0/0
-      - proto: tcp
-        ports:
-        - 3306 # for mysql
+      - proto: icmp
         cidr_ip: 0.0.0.0/0
       - proto: tcp
         ports:
-        - 8200 # Hashicorp vault
+        - 53 
+        cidr_ip: 0.0.0.0/0
+      - porto: udp
+        ports:
+        - 53
         cidr_ip: 0.0.0.0/0
 
 # This task is subdiving up the 192.168.0.0/24 and getting a smaller chunk, a /28
