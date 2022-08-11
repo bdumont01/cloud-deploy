@@ -31,7 +31,6 @@
           region: "{{ ec2_region }}"
           filters:
             "tag:application": "{{ application }}"
-            "tag:provisioner": "{{ provisioner_name }}"
             "instance-state-name": "running"
         register: instance_info
 
